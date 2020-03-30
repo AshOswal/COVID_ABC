@@ -24,7 +24,7 @@ function [D_Table_Git_D, D_Table_Git_B, D_Table_Git_R, Te] = Git_retrieve_GSSEGI
 Git_Add_Str = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_';
 % Git_Add_Str = 'https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_'
 % Git_Select_str = ["Deaths", "Confirmed", "Recovered"];
-Git_Select_str = ["deaths", "confirmed", "recovered"];
+Git_Select_str = ['deaths', 'confirmed','recovered'];
 
 Git_csv_str = '_global.csv';
 
@@ -36,8 +36,10 @@ C_head_t = repmat('%d', [1, T_passed]);
 C_head = strcat(C_head_Col,C_head_t);
 
 %Array to table, header names.
-T_head_col = ["Province/State","Country/Region","Lat","Long"]; 
-T_head_t = string(datetime(2020,01,22,0,0,0):datetime(2020,01,22,0,0,0) + caldays(T_passed));
+T_head_col = {'Province/State','Country/Region','Lat','Long'}; 
+%T_head_t = string(datetime(2020,01,22,0,0,0):datetime(2020,01,22,0,0,0) + caldays(T_passed));
+T_head_t = char(datetime(2020,01,22,0,0,0):datetime(2020,01,22,0,0,0) + caldays(T_passed));
+
 Te = datetime(2020,01,22,0,0,0):datetime(2020,01,22,0,0,0) + caldays(T_passed);
 T_head = [T_head_col,T_head_t];
 
